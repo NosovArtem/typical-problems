@@ -9,16 +9,12 @@ public class Solution {
         int val1 = l1 == null ? 0 : l1.val;
         int val2 = l2 == null ? 0 : l2.val;
 
-        int val = inMind + val1 + val2;
-        inMind = val / 10;
-        val = val % 10;
+        int sum = inMind + val1 + val2;
+        inMind = sum / 10;
+        int val = sum % 10;
 
         if (l1.next == null && l2.next == null) {
-            if (inMind == 0) {
-                return new ListNode(val);
-            } else {
-                return new ListNode(val, new ListNode(inMind));
-            }
+            return  inMind == 0 ? new ListNode(val) : new ListNode(val, new ListNode(inMind));
         }
 
         return new ListNode(val, createNode(inMind,
