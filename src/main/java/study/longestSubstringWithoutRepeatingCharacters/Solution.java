@@ -1,12 +1,13 @@
 package study.longestSubstringWithoutRepeatingCharacters;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Solution {
     public int lengthOfLongestSubstring(String s) {
-        return max(s, 0);
+        return max2(s);
     }
 
     public int max(String s, int max) {
@@ -33,4 +34,27 @@ public class Solution {
         }
         return 0;
     }
+
+    public int max2(String str) {
+        int n = str.length();
+        // Result
+        int res = 0;
+        ArrayList<Character> visited = new ArrayList();
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                if (visited.contains((str.charAt(j)))) {
+                    visited.clear();
+                    break;
+                } else {
+                    visited.add((str.charAt(j)));
+                    if (res < j - i + 1) {
+                        res = j - i + 1;
+                    }
+                }
+            }
+
+        }
+        return res;
+    }
+
 }
